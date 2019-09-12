@@ -70,8 +70,8 @@ const resolvers = {
 		}
 	},
 	Mutation: {
-		async createMessage(_, {text}) {
-			const message = await Message.create({text});
+		async createMessage(_, {text, isFavorite}) {
+			const message = await Message.create({text, isFavorite});
 			await pubsub.publish(MESSAGE_CREATED, {messageCreated: message});
 			return message;
 		},
